@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GET JOKE</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+        try {
+            $(document).ready(function () {
+                $.ajax({
+                    url: "/api/categories",
+                    success: function (result) {
+                        var html = "<option selected></option>";
+                        $(result).each(function (e, i) {
+                            html += '<option>' + i + '</option>'
+                        });
+                        $("#categories").html(html);
+                    }
+                });
+                $("#jokeButton").on("click", function () {
+                    $.ajax({
+                        url: "/api/joke",
+                        data: $("#jokeForm").serializeArray(),
+                        success: function (result) {
+                            $("#joke").html(result);
+                        }
+                    });
+                })
+            })
+        } catch (e) {
+            console.log(e)
+        }
+    </script>
+</head>
+<body>
+<form id="jokeForm" action="" method="get">
+    <fieldset>
+        <legend>ICNDB</legend>
+        <p>
+        <p><label for="categories">Select category </label><select id="categories" name="categories"></select></p>
+        <p><label for="name">Name </label><input pattern="[A-Za-z]" size="16" type="text" id="name" name="name"/></p>
+        <p><label for="lastName">Last name </label><input pattern="[A-Za-z]" size="16" type="text" id="lastName"
+                                                          name="lastName"/></p>
+        <input size="16" id="jokeButton" type="button" value="get Joke"/>
+        </p>
+    </fieldset>
+</form>
+<p id="joke"></p>
+</body>
+</html>
