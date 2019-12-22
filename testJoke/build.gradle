@@ -6,7 +6,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.3.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.2.2.RELEASE")
     }
 }
 
@@ -25,11 +25,10 @@ repositories {
     mavenCentral()
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 11
+targetCompatibility = 11
 
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
-    compile 'org.apache.tomcat.embed:tomcat-embed-jasper'
-    compile 'com.fasterxml.jackson.core'
+    compile("org.springframework.boot:spring-boot-starter-freemarker")
 }
