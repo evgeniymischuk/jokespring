@@ -10,15 +10,17 @@ buildscript {
     }
 }
 
+apply plugin: 'war'
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
-bootJar {
-    baseName = 'gs-spring-boot'
-    version = '0.1.0'
+bootWar  {
+    baseName = 'yourSol'
+    version = '1.0.0'
+    mainClassName = 'yourSol'
 }
 
 repositories {
@@ -31,4 +33,5 @@ targetCompatibility = 11
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile("org.springframework.boot:spring-boot-starter-freemarker")
+    providedRuntime 'org.springframework.boot:spring-boot-starter-wildfly'
 }
